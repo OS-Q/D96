@@ -1,8 +1,8 @@
 /*
     Modbus.cpp - Source for Modbus Base Library
-    Copyright (C) 2014 André Sarmento Barbosa
+    Copyright (C) 2014 Andrï¿½ Sarmento Barbosa
 */
-#include "Modbus.h"
+#include "ModbusIP.h"
 
 Modbus::Modbus() {
     _regs_head = 0;
