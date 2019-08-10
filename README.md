@@ -11,8 +11,11 @@ Edge-Q -> Q[4] -> M[12] -> W[52] -> D[365]
 
 ### [设备资源](https://github.com/OS-Q/D96) 
 
-- [资源](src/)
-- [文档](docs/)
+
+* [文档](docs/)
+* [资源](src/)
+* [示例](examples/)
+
 
 ### [OS-Q : Open Solution & Open Source](http://www.OS-Q.com/D96)
 ####  2019-8-5

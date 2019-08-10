@@ -13,5 +13,5 @@
     "url": "https://github.com/OS-Q/D96.git"
   },
   "frameworks": "arduino",
-  "platforms": "*"
+  "platforms": "espressif,esp8266,esp32"
 }
