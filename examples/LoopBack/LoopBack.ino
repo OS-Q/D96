@@ -31,7 +31,7 @@
 #ifdef ESP32
 constexpr int IUTBITRATE = 28800;
 #else
-constexpr int IUTBITRATE = 2400;
+constexpr int IUTBITRATE = 9600;
 #endif
 
 constexpr SoftwareSerialConfig swSerialConfig = SWSERIAL_8N1;
@@ -96,7 +96,7 @@ void loop() {
 		block[i] = c;
 		c = (c + 1) % 256;
 		++txCount;
-		//serialIUT.write(c);
+		serialIUT.write(c);
 #if defined(HWLOOPBACK) && !defined(HALFDUPLEX)
 		while (0 == (i % 8) && Serial.available()) {
 			int inCnt = Serial.readBytes(inBuf, min(BLOCKSIZE, Serial.availableForWrite()));

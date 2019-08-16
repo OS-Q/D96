@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include <SoftwareSerial.h>  // Modbus RTU pins   D7(13),D8(15)   RX,TX
 
-SoftwareSerial swSer(13, 15, false, 256);
+SoftwareSerial softSerial(13, 15, false, 256);
 
 modbusSlave::modbusSlave()
 {
@@ -20,7 +20,7 @@ void modbusSlave::setBaud(word baud)
 	//calculate the time perdiod for 3 characters for the given bps in ms.
 	_frameDelay = 24000/_baud;
 
-	swSer.begin(baud);
+	softSerial.begin(baud);
 
 	// defaults to 8-bit, no parity, 1 stop bit
 	//clear parity, stop bits, word length
@@ -36,7 +36,7 @@ void modbusSlave::setBaud(word baud)
 	//1 Stop bit
 //	UCSR0C = UCSR0C | B00000100;
 
-	swSer.flush();
+	softSerial.flush();
 }
 
 /*
@@ -77,10 +77,10 @@ void modbusSlave::calcCrc(void)
 void modbusSlave::checkSerial(void)
 {
 	//while there is more data in the UART than when last checked
-	while(swSer.available()> _len)
+	while(softSerial.available()> _len)
 	{
 		//update the incoming query message length
-		_len = swSer.available();
+		_len = softSerial.available();
 		//Wait for 3 bytewidths of data (SOM/EOM)
 //		delayMicroseconds(RTUFRAMETIME);
 		delay(_frameDelay);
@@ -100,7 +100,7 @@ void modbusSlave::serialRx(void)
 
 		//copy the query byte for byte to the new buffer
 		for (i=0 ; i < _len ; i++)
-			_msg[i] = swSer.read();
+			_msg[i] = softSerial.read();
 }
 
 /*
@@ -335,7 +335,7 @@ void modbusSlave::run(void)
 		//send the reply to the serial UART
 		//Senguino doesn't support a bulk serial write command....
 		for(i = 0 ; i < _len ; i++)
-			swSer.write(_msg[i]);
+			softSerial.write(_msg[i]);
 		//free the allocated memory for the reply message
 		free(_msg);
 		//reset the message length
