@@ -87,7 +87,7 @@ private:
 	int m_rxPin = SW_SERIAL_UNUSED_PIN;
 	int m_txPin = SW_SERIAL_UNUSED_PIN;
 #ifndef ESP32
-	ssize_t m_swsInstsIdx = -1;
+	size_t m_swsInstsIdx = -1;
 #endif
 	int m_txEnablePin = SW_SERIAL_UNUSED_PIN;
 	bool m_rxValid = false;
