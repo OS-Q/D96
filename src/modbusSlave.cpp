@@ -3,6 +3,7 @@
 #include <modbusDevice.h>
 #include <Arduino.h>
 #include <SoftwareSerial.h>  // Modbus RTU pins   D7(13),D8(15)   RX,TX
+
 SoftwareSerial swSer(13, 15, false, 256);
 
 modbusSlave::modbusSlave()

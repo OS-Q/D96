@@ -17,26 +17,14 @@ Arduino library for communicating with Modbus slaves over RS232/485 (via RTU pro
   ModbusMaster is distributed in the hope that it will be useful,
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with ModbusMaster.  If not, see <http://www.gnu.org/licenses/>.
-  
-  Written by Doc Walker (Rx)
-  Copyright © 2009-2013 Doc Walker <4-20ma at wvfans dot net>
-  
-  
- Modified by PDAControl 2016
- - Function  crc16 
- - Function  makeWord
-   
-  
+  GNU General Public License for more details. 
 */
 #include "ModbusMaster232.h"
 #include <SoftwareSerial.h>  // Modbus RTU pins   D7(13),D8(15)   RX,TX
-SoftwareSerial swSer(13, 15, false, 256);
-
 #include "Arduino.h"
+
+SoftwareSerial softSer(13, 15, false, 256);
+
 
 
 /* _____PUBLIC FUNCTIONS_____________________________________________________ */
@@ -118,14 +106,14 @@ Call once class has been instantiated, typically within setup().
 */
 void ModbusMaster232::begin(void)
 {
-	swSer.begin(9600);
+	softSer.begin(9600);
 }
 
 
 /**
 Initialize class object.
 
-Sets up the swSer port using specified baud rate.
+Sets up the softSer port using specified baud rate.
 Call once class has been instantiated, typically within setup().
 
 @overload ModbusMaster::begin(uint16_t u16BaudRate)
@@ -139,7 +127,7 @@ void ModbusMaster232::begin(unsigned long BaudRate )
 	u16TransmitBufferLength = 0;
 
 	delay(100);  
-	swSer.begin(BaudRate);
+	softSer.begin(BaudRate);
 }
 
 
@@ -732,7 +720,7 @@ uint8_t ModbusMaster232::ModbusMasterTransaction(uint8_t u8MBFunction)
   // transmit request
   for (i = 0; i < u8ModbusADUSize; i++)
   {
-		swSer.print(char(u8ModbusADU[i]));
+		softSer.print(char(u8ModbusADU[i]));
   }
 
   delay(2);
@@ -746,7 +734,7 @@ uint8_t ModbusMaster232::ModbusMasterTransaction(uint8_t u8MBFunction)
 		long cont = 0;
 		
 		while((val != _u8MBSlave) && (cont < 100)) {
-			val = swSer.read();
+			val = softSer.read();
 			delay(5);
 			cont ++;
 		}
@@ -756,9 +744,9 @@ uint8_t ModbusMaster232::ModbusMasterTransaction(uint8_t u8MBFunction)
   
   while (u8BytesLeft && !u8MBStatus)
   {
-  if  (swSer.available())
+  if  (softSer.available())
   {    
-		u8ModbusADU[u8ModbusADUSize] = swSer.read();
+		u8ModbusADU[u8ModbusADUSize] = softSer.read();
 		u8BytesLeft--;
 		u8ModbusADUSize ++;
 		 

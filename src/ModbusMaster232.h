@@ -24,18 +24,6 @@ Arduino library for communicating with Modbus slaves over RS232/485 (via RTU pro
   but WITHOUT ANY WARRANTY; without even the implied warranty of
   MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
   GNU General Public License for more details.
-  
-  You should have received a copy of the GNU General Public License
-  along with ModbusMaster.  If not, see <http://www.gnu.org/licenses/>.
-  
-  Written by Doc Walker (Rx)
-  Copyright © 2009-2013 Doc Walker <4-20ma at wvfans dot net>
-  
-  
-   Modified by PDAControl 2016
- - Function  crc16 
- - Function  makeWord
-   
 */
 
 
