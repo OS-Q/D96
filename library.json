@@ -1,8 +1,8 @@
 {
-  "name": "modbus",
-  "keywords": "modbus",
-  "description": "supports modbus IP RTU.",
-  "version": "1.0.0",
+  "name": "serial",
+  "keywords": "serial",
+  "description": "Arduino software serial for ESP8266/ESP32,supports modbus IP RTU.",
+  "version": "1.1.0",
   "authors": {
     "name":  "qitas",
     "email": "qitas@qitas.cn",
