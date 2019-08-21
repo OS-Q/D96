@@ -1,7 +1,7 @@
 {
-  "name": "serial",
-  "keywords": "serial",
-  "description": "Arduino software serial for ESP8266/ESP32,supports modbus IP RTU.",
+  "name": "BAUD",
+  "keywords": "BAUD",
+  "description": "Arduino serial for ESP8266/ESP32,supports modbus",
   "version": "1.1.0",
   "authors": {
     "name":  "qitas",
